@@ -1,15 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My AI Chatbot</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #chat {
+            height: 350px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>🤖 My AI Chatbot</h1>
+    <div class="chat-container">
 
-    <input type="text" placeholder="Type your message...">
-    <button>Send</button>
+        <h1>🤖 My AI Chatbot</h1>
+
+        <div id="chat">
+            <p><strong>AI:</strong> Hello! How can I help you?</p>
+        </div>
+
+        <div class="input-area">
+            <input
+                type="text"
+                id="message"
+                placeholder="Type your message..."
+            >
+
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+    <script>
+        function sendMessage() {
+
+            const input = document.getElementById("message");
+            const chat = document.getElementById("chat");
+
+            const message = input.value;
+
+            if (message.trim() === "") {
+                return;
+            }
+
+            chat.innerHTML +=
+                "<p><strong>You:</strong> " + message + "</p>";
+
+            input.value = "";
+
+            chat.innerHTML +=
+                "<p><strong>AI:</strong> I received your message! 🤖</p>";
+
+            chat.scrollTop = chat.scrollHeight;
+        }
+    </script>
 
 </body>
 </html>
